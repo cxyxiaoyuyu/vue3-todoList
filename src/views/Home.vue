@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {ref } from 'vue'
+import {ref, watchEffect } from 'vue'
 import Add from '@/components/Add.vue'
 import Delete from '@/components/Delete.vue'
 import Done from '@/components/Done.vue'
@@ -26,7 +26,14 @@ export default {
   components: {Add,Delete,Done},
   setup(){
     const activeName = ref('add')
-    return {activeName}
+    const handleClick = () => {
+      // console.log(activeName.value) 
+    }
+
+    watchEffect(()=> {
+      console.log(activeName.value) 
+    },{flush: 'post'})
+    return {activeName,handleClick}
   }
 
 }
